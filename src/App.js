@@ -2,24 +2,20 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
+constructor(props) {
+  super(props)
+
+  this.state = {
+    homepage: true,
+    pokeList: [], // have it on a JSON on a separate pg and import it to make it more readable
+    pokeProfile: {}, 
+    movePopup: false // make this an empty str. eventHandler will fill in the str and pass it into a func somewhere that makes it pop up
+  }
+}
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <h1>hello world</h1>
     );
   }
 }

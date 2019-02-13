@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import {PokemonList} from './containers/pokemonList';
-import {PokemonProfile} from './containers/pokemonProfile';
-import {PokeAPIList} from './components/pokeAPIList'
+import { PokemonList } from './containers/pokemonList';
+import { PokemonProfile } from './containers/pokemonProfile';
+//import {PokeAPIList} from './components/pokeAPIList'
 
 class App extends Component {
 
@@ -13,33 +13,62 @@ class App extends Component {
       pokeList: [],
       pokeProfile: {},
       moves: [],
-      show: false
+      show: false,
+      isLoaded: false,
+      error: null
     }
   }
 
   componentDidMount() {
-    this.setState({
-        pokeList:PokeAPIList.results,
-    });
+    fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20", {
+      headers: {
+        "access-control-allow-origin": "*"
+      }
+    })
+      .then(res =>
+        res.json()
+      )
+      .then(
+        (result) => {
+          console.log('THIS OS RESULT', result)
+          this.setState({
+            isLoaded: true,
+            pokeList: result.results
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
   }
 
-  togglePageView = (index) =>{
-this.setState({homepage: false})
+  togglePageView = (index) => {
+    this.setState({ homepage: false })
   }
+
   render() {
-    const {homepage} = this.state
+    const { homepage } = this.state
     const pokemonList = this.state.pokeList
-    return <>
-        <br/>
-        <br/>
+    const { error, isLoaded } = this.state;
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } else if (!isLoaded) {
+      return <div>Loading...</div>;
+    } else {
+      return <>
+        <br />
+        <br />
 
         <h1>Search Bar!</h1>
-
         {homepage === true ?
-            <PokemonList data={pokemonList} click={this.togglePageView}/> :
-            <PokemonProfile />}
-    </>
-   
+          <PokemonList data={pokemonList} click={this.togglePageView} /> :
+          <PokemonProfile />}
+      </>
+
+    }
   }
 }
 

@@ -1,3 +1,7 @@
 .pokeRow {
     display: block;
 }
+
+.pokeTab {
+    margin: 10px;
+}

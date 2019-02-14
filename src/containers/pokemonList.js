@@ -1,10 +1,9 @@
 import React from 'react';
-import './pokemonList.css';
 import { Pokemon } from '../components/pokemon';
-
 import {
     ListGroup,
   } from 'reactstrap';
+import './pokemonList.css';
 
 const PokemonList = props => {
     return <ListGroup className='col-sm-12 col-md-6 offset-md-3'>

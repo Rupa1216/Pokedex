@@ -18,27 +18,24 @@ const Pokemon = props => {
             const pokeName = upperCase.concat('', lowerCase);
             if (pokeNum < 10) {
                 pokeNum = `#00${pokeNum}`;
-    
             }
             if (pokeNum >= 10) {
                 pokeNum = `#0${pokeNum}`;
-     
             }
-
             if (pokeNum.length >= 100) {
                 pokeNum = `#${pokeNum}`;
             }
             return <ListGroupItem className='pokeTab' tag="a" href="#" key={index} onClick={e => props.onClick(index)}>
-            <Row>
-                <img src={imageSrc} alt={index} />
-                <Col>
-                    {pokeName}
-                </Col>
-                <span>
-                    {pokeNum}
-                </span>
-            </Row>
-        </ListGroupItem>
+                <Row>
+                    <img src={imageSrc} alt={index} />
+                    <Col>
+                        {pokeName}
+                    </Col>
+                    <span>
+                        {pokeNum}
+                    </span>
+                </Row>
+            </ListGroupItem>
         })}
     </>
 

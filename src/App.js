@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { PokemonList } from './containers/pokemonList';
 import { PokemonProfile } from './containers/pokemonProfile';
 //import {PokeAPIList} from './components/pokeAPIList'
@@ -30,7 +29,7 @@ class App extends Component {
       )
       .then(
         (result) => {
-          console.log('THIS OS RESULT', result)
+          console.log('THIS IS RESULT', result)
           this.setState({
             isLoaded: true,
             pokeList: result.results
@@ -50,8 +49,8 @@ class App extends Component {
   }
 
   render() {
-    const { homepage } = this.state
-    const pokemonList = this.state.pokeList
+    const { homepage } = this.state;
+    const pokemonList = this.state.pokeList;
     const { error, isLoaded } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
@@ -61,7 +60,6 @@ class App extends Component {
       return <>
         <br />
         <br />
-
         <h1>Search Bar!</h1>
         {homepage === true ?
           <PokemonList data={pokemonList} click={this.togglePageView} /> :

@@ -1,7 +1,6 @@
-.pokeRow {
-    display: block;
-}
 
 .pokeTab {
     margin: 10px;
+    border-radius: 15px;
+    border: 30px solid black;
 }

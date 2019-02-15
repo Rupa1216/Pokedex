@@ -25,7 +25,7 @@ const Pokemon = props => {
             if (pokeNum.length >= 100) {
                 pokeNum = `#${pokeNum}`;
             }
-            return <ListGroupItem className='pokeTab' tag="a" href="#" key={index} onClick={e => props.onClick(index)}>
+            return <ListGroupItem className='pokeTab' tag="a" href="#" key={index} onClick={e => props.onClick(index,pokeNum)}>
                 <Row>
                     <img src={imageSrc} alt={index} />
                     <Col>

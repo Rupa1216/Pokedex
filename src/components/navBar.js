@@ -2,8 +2,9 @@ import React from 'react';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 
 const NavBar = props => {
-    const upperCase = props.data[0].toUpperCase();
-    const lowerCase = props.data.slice(1);
+    const name = props.data[0]
+    const upperCase = name[0].toUpperCase();
+    const lowerCase = name.slice(1);
     const pokeName = upperCase.concat('', lowerCase);
     return <div>
         <Nav>

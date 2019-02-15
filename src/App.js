@@ -15,7 +15,8 @@ class App extends Component {
       show: false,
       isLoaded: false,
       error: null,
-      pokeName: null
+      pokeNameNum: [] //the first index of this arr will always be the name of pokemon, to use for profile 
+
     }
   }
 
@@ -41,19 +42,21 @@ class App extends Component {
       )
   }
 
-  togglePageView = (index) => {
+  togglePageView = (index, pokeNum) => {
     if (this.state.homepage === true) {
-      const pokeName = this.state.pokeList[index].name
-      this.setState({ homepage: false, pokeName: pokeName })
+      const pokeName = this.state.pokeList[index].name;
+      const profileData = [pokeName, pokeNum]; //Pokemon name and number to use on profile view
+      this.setState({ homepage: false, pokeNameNum: profileData });
+
     } else {
-      this.setState({ homepage: true })
+      this.setState({ homepage: true });
     }
   }
 
 
   render() {
     const pokemonList = this.state.pokeList;
-    const { error, isLoaded, pokeName, homepage } = this.state;
+    const { error, isLoaded, pokeNameNum, homepage } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -65,7 +68,7 @@ class App extends Component {
         <h1>Search Bar!</h1>
         {homepage === true ?
           <PokemonList data={pokemonList} click={this.togglePageView} /> :
-          <PokemonProfile data={pokeName} click={this.togglePageView} />}
+          <PokemonProfile data={pokeNameNum} click={this.togglePageView} />}
       </>
 
     }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { PokemonList } from './containers/pokemonList';
 import { PokemonProfile } from './containers/pokemonProfile';
-//import {PokeAPIList} from './components/pokeAPIList'
+
 
 class App extends Component {
 
@@ -19,11 +19,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20", {
-      headers: {
-        "access-control-allow-origin": "*"
-      }
-    })
+    fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20")
       .then(res =>
         res.json()
       )

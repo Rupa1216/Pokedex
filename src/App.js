@@ -1,22 +1,70 @@
 import React, { Component } from 'react';
-import './App.css';
+import { PokemonList } from './containers/pokemonList';
+import { PokemonProfile } from './containers/pokemonProfile';
+
 
 class App extends Component {
-constructor(props) {
-  super(props)
 
-  this.state = {
-    homepage: true,
-    pokeList: [], // have it on a JSON on a separate pg and import it to make it more readable
-    pokeProfile: {}, 
-    movePopup: false // make this an empty str. eventHandler will fill in the str and pass it into a func somewhere that makes it pop up
+  constructor(props) {
+    super(props);
+    this.state = {
+      homepage: true,
+      pokeList: [],
+      pokeProfile: {},
+      moves: [],
+      show: false,
+      isLoaded: false,
+      error: null
+    }
   }
-}
+
+  componentDidMount() {
+    fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20")
+      .then(res =>
+        res.json()
+      )
+      .then(
+        (result) => {
+          console.log('THIS IS RESULT', result)
+          this.setState({
+            isLoaded: true,
+            pokeList: result.results
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
+  }
+
+  togglePageView = (index) => {
+    this.setState({ homepage: false })
+  }
 
   render() {
-    return (
-      <h1>hello world</h1>
-    );
+    const { homepage } = this.state;
+    const pokemonList = this.state.pokeList;
+    const { error, isLoaded } = this.state;
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } else if (!isLoaded) {
+      return <div>Loading...</div>;
+    } else {
+      return <>
+        <br />
+        <br />
+        <h1>Search Bar!</h1>
+        {homepage === true ?
+          <PokemonList data={pokemonList} click={this.togglePageView} /> :
+          <PokemonProfile />}
+      </>
+
+    }
+
+
   }
 }
 

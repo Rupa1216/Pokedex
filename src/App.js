@@ -44,13 +44,15 @@ class App extends Component {
   togglePageView = (index) => {
     const pokeName = this.state.pokeList[index].name
     this.setState({ homepage: false, pokeName: pokeName })
-    console.log(pokeName)
+  }
+
+  goToHomeView= () => {  
+    this.setState({ homepage: true })
   }
 
   render() {
-    const { homepage } = this.state;
     const pokemonList = this.state.pokeList;
-    const { error, isLoaded, pokeName } = this.state;
+    const { error, isLoaded, pokeName, homepage } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -62,12 +64,10 @@ class App extends Component {
         <h1>Search Bar!</h1>
         {homepage === true ?
           <PokemonList data={pokemonList} click={this.togglePageView} /> :
-          <PokemonProfile data={pokeName} />}
+          <PokemonProfile data={pokeName} click={this.goToHomeView}/>}
       </>
 
     }
-
-
   }
 }
 

@@ -42,13 +42,14 @@ class App extends Component {
   }
 
   togglePageView = (index) => {
-    const pokeName = this.state.pokeList[index].name
-    this.setState({ homepage: false, pokeName: pokeName })
+    if (this.state.homepage === true) {
+      const pokeName = this.state.pokeList[index].name
+      this.setState({ homepage: false, pokeName: pokeName })
+    } else {
+      this.setState({ homepage: true })
+    }
   }
 
-  goToHomeView= () => {  
-    this.setState({ homepage: true })
-  }
 
   render() {
     const pokemonList = this.state.pokeList;
@@ -64,7 +65,7 @@ class App extends Component {
         <h1>Search Bar!</h1>
         {homepage === true ?
           <PokemonList data={pokemonList} click={this.togglePageView} /> :
-          <PokemonProfile data={pokeName} click={this.goToHomeView}/>}
+          <PokemonProfile data={pokeName} click={this.togglePageView} />}
       </>
 
     }

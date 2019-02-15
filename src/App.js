@@ -3,6 +3,7 @@ import { PokemonList } from './containers/pokemonList';
 import { PokemonProfile } from './containers/pokemonProfile';
 
 
+
 class App extends Component {
 
   constructor(props) {
@@ -56,7 +57,7 @@ class App extends Component {
 
   render() {
     const pokemonList = this.state.pokeList;
-    const { error, isLoaded, pokeNameNum, homepage } = this.state;
+    const { error, isLoaded, pokeNameNum, homepage, moves } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -68,7 +69,7 @@ class App extends Component {
         <h1>Search Bar!</h1>
         {homepage === true ?
           <PokemonList data={pokemonList} click={this.togglePageView} /> :
-          <PokemonProfile data={pokeNameNum} click={this.togglePageView} />}
+          <PokemonProfile data={pokeNameNum} movesData={moves} click={this.togglePageView} />}
       </>
 
     }

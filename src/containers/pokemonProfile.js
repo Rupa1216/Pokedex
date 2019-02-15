@@ -1,5 +1,6 @@
 import React from 'react';
-import {NavBar} from '../components/navBar';
+import { NavBar } from '../components/navBar';
+import { MovesTabs } from './components/movesTabs'
 
 const PokemonProfile = props => {
     console.log('profile', props)

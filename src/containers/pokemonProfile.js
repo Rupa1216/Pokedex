@@ -7,7 +7,7 @@ const PokemonProfile = props => {
     return <React.Fragment>
         <NavBar data={props.data} onClick={props.click} />
         <h1>{props.data}'s Profile!</h1>
-        <MovesTabs movesData={props.movesData} />
+        <MovesTabs movesData={props.movesData} onClick={props.movesclick} />
     </React.Fragment>
 }
 

@@ -12,7 +12,7 @@ class App extends Component {
       homepage: true,
       pokeList: [],
       pokeProfile: {},
-      moves: ['jump'],
+      moves: ['jump', 'kick', 'punch'],
       show: false,
       isLoaded: false,
       error: null,
@@ -54,6 +54,9 @@ class App extends Component {
     }
   }
 
+  handleMovesClick = (index) => {
+    this.setState({ show: true });
+  }
 
   render() {
     const pokemonList = this.state.pokeList;
@@ -69,7 +72,7 @@ class App extends Component {
         <h1>Search Bar!</h1>
         {homepage === true ?
           <PokemonList data={pokemonList} click={this.togglePageView} /> :
-          <PokemonProfile data={pokeNameNum} movesData={moves} click={this.togglePageView} />}
+          <PokemonProfile data={pokeNameNum} movesData={moves} click={this.togglePageView} movesclick={this.handleMovesClick} />}
       </>
 
     }

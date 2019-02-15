@@ -2,13 +2,15 @@ import React from 'react';
 import { Button } from 'reactstrap';
 
 const MovesTabs = props => {
-    const moves = props.movesData;
-    console.log(moves);
-    return (
-        <div>
-            <Button outline color="secondary">{moves} </Button>{' '}
-        </div>
-    )
+    const { movesData, onClick } = props;
+    console.log(movesData);
+
+    return <div>
+        {movesData.map((move, index) => {
+            return < Button outline color="secondary" onClick={e => onClick(index)} key={index}> {move} </Button>
+        })}
+    </div>
 }
+
 
 export { MovesTabs };

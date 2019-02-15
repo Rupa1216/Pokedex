@@ -1,8 +1,11 @@
 import React from 'react';
+import {NavBar} from '../components/navBar';
 
 const PokemonProfile = props => {
+    console.log('profile', props)
     return <React.Fragment>
-        <h1>Profile!</h1>
+        <NavBar data={props.data} onClick={props.click}/>
+        <h1>{props.data}'s Profile!</h1>
     </React.Fragment>
 }
 

@@ -1,0 +1,15 @@
+.jumbotron {
+    background-color: transparent !important;
+    text-align: center;
+    
+}
+
+/* .header {
+    text-align: center;
+} */
+
+.input {
+    margin: 0 auto;
+    max-width: 30%;
+}
+

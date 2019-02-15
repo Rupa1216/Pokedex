@@ -12,7 +12,7 @@ class App extends Component {
       homepage: true,
       pokeList: [],
       pokeProfile: {},
-      moves: [],
+      moves: ['jump'],
       show: false,
       isLoaded: false,
       error: null,

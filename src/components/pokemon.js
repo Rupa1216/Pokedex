@@ -17,15 +17,15 @@ const Pokemon = props => {
             const lowerCase = item.name.slice(1);
             const pokeName = upperCase.concat('', lowerCase);
             if (pokeNum < 10) {
-                pokeNum = `#00${pokeNum}`;
+                pokeNum = `# 00${pokeNum}`;
             }
             if (pokeNum >= 10) {
-                pokeNum = `#0${pokeNum}`;
+                pokeNum = `# 0${pokeNum}`;
             }
             if (pokeNum.length >= 100) {
-                pokeNum = `#${pokeNum}`;
+                pokeNum = `# ${pokeNum}`;
             }
-            return <ListGroupItem className='pokeTab' tag="a" href="#" key={index} onClick={e => props.onClick(index,pokeNum)}>
+            return <ListGroupItem className='pokeTab' tag="a" href="#" key={index} onClick={e => props.onClick(index, pokeNum)}>
                 <Row>
                     <img src={imageSrc} alt={index} />
                     <Col>

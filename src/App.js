@@ -12,7 +12,7 @@ class App extends Component {
       homepage: true,
       pokeList: [],
       pokeProfile: {},
-      moves: ['jump', 'kick', 'punch'],
+      moves: [],
       show: false,
       isLoaded: false,
       error: null,
@@ -22,13 +22,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20")
+    fetch("https://pokeapi.co/api/v2/pokemon/?offset=21&limit=20")
       .then(res =>
         res.json()
       )
       .then(
         (result) => {
-          console.log('THIS IS RESULT', result)
           this.setState({
             isLoaded: true,
             pokeList: result.results
@@ -47,7 +46,23 @@ class App extends Component {
     if (this.state.homepage === true) {
       const pokeName = this.state.pokeList[index].name;
       const profileData = [pokeName, pokeNum]; //Pokemon name and number to use on profile view
-      this.setState({ homepage: false, pokeNameNum: profileData });
+      const pokemonAPI = `https://pokeapi.co/api/v2/pokemon/${pokeName}`;
+      fetch(pokemonAPI)
+        .then(res =>
+          res.json()
+        )
+        .then(res => {
+          const movesArr = res.moves;
+          const newMovesArr = [];
+          for (let i = 0; i < movesArr.length; i++) {
+            let moveName = movesArr[i].move.name;
+            newMovesArr.push(moveName);
+          }
+          return newMovesArr
+        })
+        .then(res => {
+          this.setState({ moves: res, homepage: false, pokeNameNum: profileData })
+        })
 
     } else {
       this.setState({ homepage: true });

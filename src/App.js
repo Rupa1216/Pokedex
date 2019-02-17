@@ -10,12 +10,12 @@ class App extends Component {
     super(props);
     this.state = {
       homepage: true,
-      pokeList: [],
+      pokeList: [],//holds first 20 once page loads
       pokeProfile: {}, //full API Object for profile
       moves: [],//array of only moves names
       show: false,
-      isLoaded: false,
-      error: null,
+      isLoaded: false,//turns true once page loads
+      error: null,//if API fails error will display, page did not load
       pokeNameNum: [] //the first index of this arr will always be the name of pokemon, to use for profile 
 
     }
@@ -42,6 +42,7 @@ class App extends Component {
       )
   }
 
+  //toggles page view and also calls second API with profile info
   togglePageView = (index, pokeNum) => {
     if (this.state.homepage === true) {
       const pokeName = this.state.pokeList[index].name;
@@ -71,6 +72,7 @@ class App extends Component {
     }
   }
 
+  //once a move is clicked the show in state changes from false to true, the index of the move name is passed so you can use 
   handleMovesClick = (index) => {
     this.setState({ show: true });
   }

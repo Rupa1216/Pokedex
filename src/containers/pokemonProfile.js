@@ -1,11 +1,13 @@
 import React from 'react';
 import { NavBar } from '../components/navBar';
-import { MovesTabs } from '../components/movesTabs'
+import { MovesTabs } from '../components/movesTabs';
+import { BaseStats } from '../components/baseStats';
 import { Row, Col } from 'reactstrap';
 import './pokemonProfile.css'
 
 const PokemonProfile = props => {
-    const name = props.data[0]
+    const profileStats = props.profile.stats;//an array of stats objects
+    const name = props.data[0]//lowered cased pokemon name
     const upperCase = name[0].toUpperCase();
     const lowerCase = name.slice(1);
     const pokeName = upperCase.concat('', lowerCase);
@@ -18,10 +20,10 @@ const PokemonProfile = props => {
                 <h2 className="title" >{pokeTitle}</h2>
             </Col>
         </Row>
-
+        <BaseStats profileData={profileStats}></BaseStats>
         <MovesTabs movesData={props.movesData} onClick={props.movesclick} />
     </React.Fragment>
 }
 
-export { PokemonProfile };
+export { PokemonProfile }
 

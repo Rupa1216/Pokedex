@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from 'reactstrap';
+import { Container, Col, Row, Jumbotron } from 'reactstrap';
 import './baseStats.css'
 
 const BaseStats = props => {
@@ -8,30 +8,31 @@ const BaseStats = props => {
 
     return <>
         <div>
-            <h2>Base Stats</h2>
-            <Table borderless>
-                {stats.map((stat, index) => {
-                    const base_stat = stat.base_stat
-                    const stat_name = stat.stat.name
-                    return <>
+            <Container fluid>
+                <h2>Base Stats</h2>
+                <div className="stat">
+                    <Row form>
+                        {stats.map((stat, index) => {
+                            const stat_name_lc = stat.stat.name;//lowered case state name
+                            const upperCase = stat_name_lc[0].toUpperCase();
+                            const lowerCase = stat_name_lc.slice(1);
+                            const stat_name = upperCase.concat('', lowerCase);
+                            const base_stat = stat.base_stat
+                            return <>
+                                <Col md="auto">
+                                    <div className="content stat-name">
+                                        {stat_name}
+                                    </div>
+                                    <div className="content stat_base">
+                                        {base_stat}
+                                    </div>
+                                </Col>
+                            </>
+                        })}
+                    </Row>
+                </div>
+            </Container>
 
-                        <thead>
-                            <tr>
-                                <tb>{stat_name}</tb>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><th>{base_stat}</th></tr>
-
-                        </tbody>
-
-
-
-
-                    </>
-                })}
-
-            </Table>
         </div>
     </>
 

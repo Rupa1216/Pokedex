@@ -3,6 +3,7 @@ import { PokemonList } from './containers/pokemonList';
 import { PokemonProfile } from './containers/pokemonProfile';
 
 
+
 class App extends Component {
 
   constructor(props) {
@@ -21,13 +22,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20")
+    fetch("https://pokeapi.co/api/v2/pokemon/?offset=21&limit=20")
       .then(res =>
         res.json()
       )
       .then(
         (result) => {
-          console.log('THIS IS RESULT', result)
           this.setState({
             isLoaded: true,
             pokeList: result.results
@@ -46,17 +46,36 @@ class App extends Component {
     if (this.state.homepage === true) {
       const pokeName = this.state.pokeList[index].name;
       const profileData = [pokeName, pokeNum]; //Pokemon name and number to use on profile view
-      this.setState({ homepage: false, pokeNameNum: profileData });
+      const pokemonAPI = `https://pokeapi.co/api/v2/pokemon/${pokeName}`;
+      fetch(pokemonAPI)
+        .then(res =>
+          res.json()
+        )
+        .then(res => {
+          const movesArr = res.moves;
+          const newMovesArr = [];
+          for (let i = 0; i < movesArr.length; i++) {
+            let moveName = movesArr[i].move.name;
+            newMovesArr.push(moveName);
+          }
+          return newMovesArr
+        })
+        .then(res => {
+          this.setState({ moves: res, homepage: false, pokeNameNum: profileData })
+        })
 
     } else {
       this.setState({ homepage: true });
     }
   }
 
+  handleMovesClick = (index) => {
+    this.setState({ show: true });
+  }
 
   render() {
     const pokemonList = this.state.pokeList;
-    const { error, isLoaded, pokeNameNum, homepage } = this.state;
+    const { error, isLoaded, pokeNameNum, homepage, moves } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -68,7 +87,7 @@ class App extends Component {
         <h1>Search Bar!</h1>
         {homepage === true ?
           <PokemonList data={pokemonList} click={this.togglePageView} /> :
-          <PokemonProfile data={pokeNameNum} click={this.togglePageView} />}
+          <PokemonProfile data={pokeNameNum} movesData={moves} click={this.togglePageView} movesclick={this.handleMovesClick} />}
       </>
 
     }

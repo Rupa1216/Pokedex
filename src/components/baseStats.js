@@ -17,13 +17,13 @@ const BaseStats = props => {
                             const upperCase = stat_name_lc[0].toUpperCase();
                             const lowerCase = stat_name_lc.slice(1);
                             const stat_name = upperCase.concat('', lowerCase);
-                            const base_stat = stat.base_stat
+                            const base_stat = stat.base_stat;
                             return <>
-                                <Col md="auto">
-                                    <div className="content stat-name">
+                                <Col md="auto" key={index}>
+                                    <div className="content stat-name" >
                                         {stat_name}
                                     </div>
-                                    <div className="content stat_base">
+                                    <div className="content stat_base" >
                                         {base_stat}
                                     </div>
                                 </Col>

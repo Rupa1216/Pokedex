@@ -1,7 +1,8 @@
 .jumbotron {
     background-color: transparent !important;
     text-align: center;
-    
+    color: red;
+    font-weight: bold;
 }
 
 /* .header {
@@ -13,3 +14,14 @@
     max-width: 30%;
 }
 
+.imgLeft {
+    float: left;
+    max-height: 10%;
+    max-width: 10%;
+}
+
+.imgRight {
+    float: right;
+    max-height: 9%;
+    max-width: 9%;
+}

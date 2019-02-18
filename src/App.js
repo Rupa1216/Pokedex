@@ -60,7 +60,7 @@ class App extends Component {
             let moveName = movesArr[i].move.name;
             newMovesArr.push(moveName);
           }
-          return {newMovesArr: newMovesArr, profileData: profileData } //an object has to be return to be able to pass multiple values
+          return { newMovesArr: newMovesArr, profileData: profileData } //an object has to be return to be able to pass multiple values
         })
         .then(res => {
           console.log(res.profileData)
@@ -82,19 +82,26 @@ class App extends Component {
     const { error, isLoaded, pokeNameNum, homepage, moves, pokeProfile } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
+    } if (!isLoaded) {
       return <div>Loading...</div>;
-    } else {
+    } if (isLoaded && homepage === true) {
+      //home view
       return <>
         <br />
         <br />
         <h1>Search Bar!</h1>
-        {homepage === true ?
-          <PokemonList data={pokemonList} click={this.togglePageView} /> :
-          <PokemonProfile data={pokeNameNum} movesData={moves} profile={pokeProfile} click={this.togglePageView} movesclick={this.handleMovesClick} />}
-      </>
-
+        <PokemonList data={pokemonList} click={this.togglePageView} /> :
+           </>
+    } if (isLoaded && homepage === false) {
+      //profile view
+      return <>
+        <br />
+        <br />
+        <h1>Search Bar!</h1>
+        <PokemonProfile data={pokeNameNum} movesData={moves} profile={pokeProfile} click={this.togglePageView} movesclick={this.handleMovesClick} />}
+     </>
     }
+
   }
 }
 

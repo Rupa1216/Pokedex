@@ -10,7 +10,7 @@ const Header = (props) => {
             </div>
             <img src={pokeball} alt="sprite" className="imgLeft"></img>
             <Jumbotron className='jumbotron'>
-                <h4 className="display-5 header">Pursuit Pokedex</h4>
+                <h4 className="display-5 header">{this.state.title}</h4>
             </Jumbotron>
             <Input placeholder="Search..." className="input" />
             <img src={pokeball} alt="sprite" className="imgRight"></img>

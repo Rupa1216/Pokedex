@@ -8,7 +8,7 @@ import './pokemonProfile.css'
 
 const PokemonProfile = props => {
     const profileStats = props.profile.stats;//an array of stats objects
-    const profileImages = props.profile.sprites;
+    const profileImages = Object.values(props.profile.sprites); //array of urls from sprites for images
     //props.data is the array with poke name and poke number
     return <React.Fragment>
         <NavBar data={props.data} onClick={props.click} />

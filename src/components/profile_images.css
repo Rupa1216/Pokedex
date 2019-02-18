@@ -1,0 +1,9 @@
+.images {
+    display: inline-block;
+    margin-left: 60px;
+}
+
+.image-text {
+    color: gray;
+    text-align: center;
+}

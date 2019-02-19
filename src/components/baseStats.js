@@ -3,8 +3,7 @@ import { Container, Col, Row } from 'reactstrap';
 import './baseStats.css'
 
 const BaseStats = props => {
-    console.log(props.profileData)//an array of stats objects
-    const stats = props.profileData;
+    const stats = props.profileData;//an array of stats objects
 
     return <>
         <div>

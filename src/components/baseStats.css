@@ -1,0 +1,19 @@
+.stat {
+   border: 1px solid gray;
+   border-radius: 5px;
+   padding-left: 10px;
+}
+
+.content {
+    display: block;
+    text-align: center;
+    margin: 8px; 
+}
+
+.stat-name {
+    color: gray;
+}
+
+.stat_base {
+    font-weight: bold;
+}

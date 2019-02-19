@@ -1,4 +1,4 @@
-[
+const pokeSuggestions = [
 	"Bulbasaur",
 	"Ivysaur",
 	"Venusaur",
@@ -800,10 +800,12 @@
 	"Guzzlord",
 	"Necrozma",
 	"Magearna",
-  	"Marshadow",
-  	"Poipole",
-  	"Naganadel",
-  	"Stakataka",
-  	"Blacephalon",
-  	"Zeraora"
+	"Marshadow",
+	"Poipole",
+	"Naganadel",
+	"Stakataka",
+	"Blacephalon",
+	"Zeraora"
 ]
+
+export default pokeSuggestions;

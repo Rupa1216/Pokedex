@@ -4,13 +4,14 @@ import './header.css';
 import pokeball from '../pokeball.png';
 
 const Header = (props) => {
+    const title = props.data;
     return (
         <div className='container'>
-            <div className='row red'>
+            <div className='row'>
             </div>
             <img src={pokeball} alt="sprite" className="imgLeft"></img>
             <Jumbotron className='jumbotron'>
-                <h4 className="display-5 header">{this.state.title}</h4>
+                <h4 className="display-5 header">{title}</h4>
             </Jumbotron>
             <Input placeholder="Search..." className="input" />
             <img src={pokeball} alt="sprite" className="imgRight"></img>
@@ -20,4 +21,4 @@ const Header = (props) => {
     )
 }
 
-export default Header;
+export { Header } ;

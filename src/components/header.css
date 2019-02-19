@@ -15,12 +15,17 @@
 }
 
 .imgLeft {
+    position: absolute;
+    top: 15px;
+    left: 15px;
     max-height: 10%;
     max-width: 10%;
 }
 
 .imgRight {
-    float: right;
-    max-height: 9%;
-    max-width: 9%;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    max-height: 10%;
+    max-width: 10%;
 }

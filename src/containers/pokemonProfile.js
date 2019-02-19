@@ -1,27 +1,19 @@
 import React from 'react';
 import { NavBar } from '../components/navBar';
-import { MovesTabs } from '../components/movesTabs'
-import { Row, Col } from 'reactstrap';
+import { MovesTabs } from '../components/movesTabs';
+import { PokeNameID } from '../components/pokeNameID'
+import { BaseStats } from '../components/baseStats';
 import './pokemonProfile.css'
 
 const PokemonProfile = props => {
-    const name = props.data[0]
-    const upperCase = name[0].toUpperCase();
-    const lowerCase = name.slice(1);
-    const pokeName = upperCase.concat('', lowerCase);
-    const pokeTitle = props.data[1] + '  -  ' + pokeName;
+    const profileStats = props.profile.stats;//an array of stats objects
     return <React.Fragment>
         <NavBar data={props.data} onClick={props.click} />
-
-        <Row className="float-right">
-            <Col className="col-auto - variable width content" >
-                <h2 className="title" >{pokeTitle}</h2>
-            </Col>
-        </Row>
-
+        <PokeNameID data={props.data}></PokeNameID>     
+        <BaseStats profileData={profileStats}></BaseStats>
         <MovesTabs movesData={props.movesData} onClick={props.movesclick} />
     </React.Fragment>
 }
 
-export { PokemonProfile };
+export { PokemonProfile }
 

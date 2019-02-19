@@ -4,7 +4,7 @@ import { PokemonProfile } from './containers/pokemonProfile';
 import { LoadButton } from './components/loadbutton';
 import axios from 'axios';
 import Header from './components/header';
-
+import pokeSuggestions from './pkmn-list';
 
 class App extends Component {
 
@@ -20,7 +20,9 @@ class App extends Component {
       isLoaded: false,//turns true once page loads
       error: null,//if API fails error will display, page did not load
       pokeNameNum: [], //the first index of this arr will always be the name of pokemon, to use for profile 
-      nextTwenty: 1
+      nextTwenty: 1,
+      searchInput: '',
+      suggestions: []
     }
   }
 
@@ -109,14 +111,14 @@ class App extends Component {
     } if (isLoaded && homepage === true) {
       //home view
       return <>
-        <Header />
+        <Header data={title} />
         <PokemonList data={pokemonList} click={this.togglePageView} /> :
         <LoadButton onClick={this.handleLoadClick} />
            </>
     } if (isLoaded && homepage === false) {
       //profile view
       return <>
-        <Header />
+        <Header data={title} />
         <PokemonProfile data={pokeNameNum} movesData={moves} profile={pokeProfile} click={this.togglePageView} movesclick={this.handleMovesClick} />}
      </>
     }

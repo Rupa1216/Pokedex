@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { PokemonList } from './containers/pokemonList';
 import { PokemonProfile } from './containers/pokemonProfile';
-import LoadButton from './components/loadbutton';
+import { LoadButton } from './components/loadbutton';
+import axios from 'axios';
 
 
 class App extends Component {
@@ -16,8 +17,8 @@ class App extends Component {
       show: false,
       isLoaded: false,//turns true once page loads
       error: null,//if API fails error will display, page did not load
-      pokeNameNum: [] //the first index of this arr will always be the name of pokemon, to use for profile 
-
+      pokeNameNum: [], //the first index of this arr will always be the name of pokemon, to use for profile 
+      nextTwenty: 1
     }
   }
 
@@ -77,6 +78,25 @@ class App extends Component {
     this.setState({ show: true });
   }
 
+
+    handleLoadClick = () => {
+    const offset = this.state.nextTwenty + 20
+    const API = `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=20`
+
+       axios.get(API)
+        .then(response => {
+          console.log(response.data.results)
+          const newArr = response.data.results
+          const updatedResults= this.state.pokeList.concat(newArr)
+          this.setState({ pokeList: updatedResults, nextTwenty: offset + 20 });
+        })
+        .catch(e => {
+          console.log(e)
+        })
+    
+
+  }
+
   render() {
     const pokemonList = this.state.pokeList;
     const { error, isLoaded, pokeNameNum, homepage, moves, pokeProfile } = this.state;
@@ -91,6 +111,7 @@ class App extends Component {
         <br />
         <h1>Search Bar!</h1>
         <PokemonList data={pokemonList} click={this.togglePageView} /> :
+        <LoadButton onClick={this.handleLoadClick} />
            </>
     } if (isLoaded && homepage === false) {
       //profile view

@@ -1,12 +1,12 @@
 import React from 'react';
-import { Button }from 'reactstrap';
+// import { Button }from 'reactstrap';
 import './loadbutton.css';
 
 
-const nextTwenty = () => { // (changeState, offest, results)
-//        offset = offset + 20 
-//        axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=20`)
-        axios.get(`https://pokeapi.co/api/v2/pokemon/?21&limit=20`)
+const LoadButton = (props) => { // (changeState, offest, results)
+       offset = props.nextTwenty + 20 
+        fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=20`)
+        // axios.get(`https://pokeapi.co/api/v2/pokemon/?21&limit=20`)
         .then(response => {
             console.log(response.data.results)
 //       const updatedResults = results.concat(response.data.results)
@@ -14,9 +14,9 @@ const nextTwenty = () => { // (changeState, offest, results)
         })
      }
 
-<button loadMore = {e => nextTwenty()}>Load More</button>
+<button {e => LoadButton()}>Load More</button>
 
-
+export { LoadButton }; 
 
 
 

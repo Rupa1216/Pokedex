@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { PokemonList } from './containers/pokemonList';
 import { PokemonProfile } from './containers/pokemonProfile';
-
+import LoadButton from './components/loadbutton';
 
 
 class App extends Component {
@@ -88,6 +88,7 @@ class App extends Component {
         {homepage === true ?
           <PokemonList data={pokemonList} click={this.togglePageView} /> :
           <PokemonProfile data={pokeNameNum} movesData={moves} click={this.togglePageView} movesclick={this.handleMovesClick} />}
+          <button onClick {e => nextTwenty()}>Load More</button>
       </>
 
     }

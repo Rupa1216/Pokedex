@@ -16,7 +16,7 @@ const LoadButton = (props) => { // (changeState, offest, results)
 
 <button {e => LoadButton()}>Load More</button>
 
-export { LoadButton }; 
+export { LoaddButton }; 
 
 
 

@@ -3,7 +3,7 @@ import { PokemonList } from './containers/pokemonList';
 import { PokemonProfile } from './containers/pokemonProfile';
 import { LoadButton } from './components/loadbutton';
 import axios from 'axios';
-import Header from './components/header';
+import { Header } from './components/header';
 import pokeSuggestions from './pkmn-list';
 
 class App extends Component {
@@ -68,7 +68,7 @@ class App extends Component {
           return { newMovesArr: newMovesArr, profileData: profileData } //an object has to be return to be able to pass multiple values
         })
         .then(res => {
-          console.log(res.profileData)
+          // console.log(res.profileData)
           this.setState({ moves: res.newMovesArr, homepage: false, pokeNameNum: pokeNameID, pokeProfile: res.profileData })
         })
 
@@ -89,7 +89,7 @@ class App extends Component {
 
        axios.get(API)
         .then(response => {
-          console.log(response.data.results)
+          // console.log(response.data.results)
           const newArr = response.data.results
           const updatedResults= this.state.pokeList.concat(newArr)
           this.setState({ pokeList: updatedResults, nextTwenty: offset + 20 });
@@ -101,9 +101,25 @@ class App extends Component {
 
   }
 
+  handleSearch = (props) => {
+    // console.log("1 props")
+    let userSearch = props.target.value
+    // console.log(props.target.value)
+    const { searchInput, suggestions } = this.state;
+    this.setState({ searchInput: userSearch })
+    // console.log('2 props saved to state')
+    const pokeMatches = pokeSuggestions.filter(searchInput => searchInput.toLowerCase().includes(userSearch.toLowerCase())
+    console.log(pokeMatches)
+
+    // console.log('3 filtered')
+    // return <div class="dropdown-menu">
+    //     <span class="dropdown-item-text"></span>
+    // </div>
+}
+
   render() {
     const pokemonList = this.state.pokeList;
-    const { error, isLoaded, pokeNameNum, homepage, moves, pokeProfile } = this.state;
+    const { error, isLoaded, pokeNameNum, homepage, moves, pokeProfile, title } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } if (!isLoaded) {
@@ -111,7 +127,7 @@ class App extends Component {
     } if (isLoaded && homepage === true) {
       //home view
       return <>
-        <Header data={title} />
+        <Header data={title} handleSearch={this.handleSearch} />
         <PokemonList data={pokemonList} click={this.togglePageView} /> :
         <LoadButton onClick={this.handleLoadClick} />
            </>

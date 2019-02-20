@@ -8,7 +8,7 @@ import './pokemon.css';
 
 const Pokemon = props => {
     const { data } = props;
-    console.log(data)
+    // console.log(data)
     return <>
         {data.map((item, index) => {
             const imageSrc = `https://img.pokemondb.net/sprites/sun-moon/icon/${item.name}.png`;

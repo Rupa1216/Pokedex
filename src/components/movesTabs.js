@@ -4,7 +4,7 @@ import './moveTabs.css'
 
 const MovesTabs = props => {
     const { movesData, onClick } = props;
-    
+
     return <div className="moves-containair">
         <h2>Moves</h2>
         {movesData.map((move, index) => {

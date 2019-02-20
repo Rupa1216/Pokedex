@@ -19,6 +19,7 @@ class App extends Component {
       error: null,//if API fails error will display, page did not load
       pokeNameNum: [], //the first index of this arr will always be the name of pokemon, to use for profile 
       nextTwenty: 1
+      
     }
   }
 
@@ -74,14 +75,27 @@ class App extends Component {
   }
 
   //once a move is clicked the show in state changes from false to true, the index of the move name is passed so you can use 
-  handleMovesClick = (index) => {
-    this.setState({ show: true });
-  }
+  // handleMovesClick = (indexOfTheMove) => {
+  //   this.setState({ show: true });
+  // }
+  //       const currentMove = this.state.pokeProfile.moves
+  //       const getMovesAPI = `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=20`
 
+  //       axios.get(getMovesAPI)
+  //         .then(response => {
+  //           console.log(response.data.results)
+  //           const newMovesArr = response.data.results)
+  //           const 
+  //           this.setState({ pokeList: currentMove, type, power, pp });
+  //         })
+  //         .catch(e => {
+  //           console.log(e)
+  //         }) 
+  //         })
 
     handleLoadClick = () => {
-    const offset = this.state.nextTwenty + 20
-    const API = `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=20`
+          const offset = this.state.nextTwenty + 20
+          const API = `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=20`
 
        axios.get(API)
         .then(response => {

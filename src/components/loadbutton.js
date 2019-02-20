@@ -1,11 +1,11 @@
 import React from 'react';
-import { Button }from 'reactstrap';
+// import { Button }from 'reactstrap';
 import './loadbutton.css';
 
 
 const LoadButton = (props) => { // (changeState, offest, results)
       
-            return <><Button onClick = {e => props.onClick()}>Load More</Button></>
+            return <><div className='container'><button className='loadbutton' onClick = {e => props.onClick()}>LOAD MORE</button></div></>
 
     
         

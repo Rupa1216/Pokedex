@@ -1,7 +1,16 @@
 .loadbutton {
-  margin: 5px;
-}
+  border-radius: 15px;
+  border: 2px solid grey;
+  background-color: red;
+  margin: 0 auto;
+  color: white;
+  padding: 25px;
+  }
 
-.moves-containair {
-  margin: 15px;
-}
+  .container {
+    width: 100%;
+    text-align: center;
+  }
+
+
+
